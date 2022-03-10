@@ -5,9 +5,8 @@ import propTypes from "prop-types";
 import AppTheme from "../common/styles";
 import { login } from "../backend/auth";
 import { authenticate } from "../AuthRoutes";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Button from "@material-tailwind/react/Button";
-import ClosingAlert from "@material-tailwind/react/ClosingAlert";
 
 function Login({ Theme }) {
   const { THEME } = Theme;
@@ -44,6 +43,13 @@ function Login({ Theme }) {
               console.log("NAVIGATE");
             }, 2000);
           });
+        }
+        if (res.success === true && res.userDetails.isAdmin === 0) {
+          setMessage("Permission Denied! You are not an Aadmin.");
+          setError(true);
+          setTimeout(() => {
+            setError(false);
+          }, 2000);
         }
         if (res.success === false) {
           setMessage(res.message);
@@ -117,7 +123,7 @@ function Login({ Theme }) {
                       Remember me{" "}
                     </label>
                   </div>
-                  <a href="#!">Forgot password?</a>
+                  <Link to="/forgetpassword">Forgot password?</Link>
                 </div>
 
                 <Button

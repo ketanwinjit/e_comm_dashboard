@@ -5,6 +5,7 @@ import NavBarHeader from "./components/NavBarHeader";
 import Sidebar from "./components/Sidebar";
 import Categories from "./pages/Categories";
 import Dashboard from "./pages/Dashboard";
+import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import Orders from "./pages/Orders";
 import Others from "./pages/Others";
@@ -16,6 +17,7 @@ function routes() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
+          <Route exact path="/forgetpassword" component={ForgetPassword} />
           <PrivateRoute />
         </Switch>
       </Router>

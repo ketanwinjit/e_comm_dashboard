@@ -30,3 +30,5 @@ export const login = async (info) => {
     return error;
   }
 };
+
+export const forgetUserPassword = async (info) => {};

@@ -204,9 +204,35 @@ function ItemCard(props) {
     addCategory(categoryId, updateCategoryName, updatedCategoryImage, "UPDATE")
       .then((res) => {
         console.log("update res", res);
+        if (res.success === true) {
+          getAllCategory();
+          setMessage("Category Updated");
+          setUpdateCategoryModal(false);
+          setSuccess(true);
+          setTimeout(() => {
+            setMessage("");
+            setSuccess(false);
+          }, 2000);
+        }
+        if (res.success === false) {
+          setMessage("Error in updating aategory");
+          setUpdateCategoryModal(false);
+          setError(true);
+          setTimeout(() => {
+            setMessage("");
+            setError(false);
+          }, 2000);
+        }
       })
       .catch((error) => {
         console.log("Update Error", error);
+        setMessage("Error in updating aategory");
+        setUpdateCategoryModal(false);
+        setError(true);
+        setTimeout(() => {
+          setMessage("");
+          setError(false);
+        }, 2000);
       });
   };
 
